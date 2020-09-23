@@ -11,10 +11,10 @@ using Dapper.Contrib.Extensions;
 
 namespace Lab15._3DesigningAndCreatingARestAPI.Controllers
 {
-    [Route("Products")]
+    [Route("Customers")]
     [ApiController]
-    [Table("Products")]
-    public class ProductsController : ControllerBase
+    [Table("Customers")]
+    public class CustomersController : ControllerBase
     {
         public IDbConnection Connection()
         {
@@ -22,17 +22,18 @@ namespace Lab15._3DesigningAndCreatingARestAPI.Controllers
         }
 
         [HttpGet]
-        public List<Product> AllProducts()
+        public List<Customer> AllCustomers()
         {
-            List<Product> products = Connection().GetAll<Product>().ToList();
-            return products;
+            List<Customer> customers = Connection().GetAll<Customer>().ToList();
+            return customers;
         }
 
-        [HttpGet("{ProductName}")]
-        public List<Product> Products(string productName)
+        [HttpGet("{country}")]
+        public List<Customer> CustomerSearch(string country)
         {
-            List<Product> products = Connection().Query<Product>($"select * from Products where ProductName like '%{productName}%'").ToList<Product>();
-            return products;
+            List<Customer> customers = Connection().Query<Customer>($"select ContactName, Country from Customers where Country like '%{country}%'").AsList();
+
+            return customers;
         }
     }
 }
