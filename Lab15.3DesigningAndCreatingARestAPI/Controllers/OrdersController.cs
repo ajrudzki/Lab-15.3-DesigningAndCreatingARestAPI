@@ -34,13 +34,13 @@ namespace Lab15._3DesigningAndCreatingARestAPI.Controllers
             List<Order> orderInfo = Connection().Query<Order>($"select * from Orders where OrderID like '%{OrderID}%'").AsList();
             return orderInfo;
         }
-
+        //not getting errors but not deleting things
         [HttpDelete("delete{OrderID}")]
         public static void Delete(int orderid)
         {
             IDbConnection db = new SqlConnection("Server=HN78Q13\\SQLEXPRESS;Database=Northwind;user id=testuser;password=abc123");
 
-            db.Delete(new Order { OrderID = orderid });
+            db.Delete(new Order() { OrderID = orderid });
         }
     }
 }

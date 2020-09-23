@@ -34,5 +34,13 @@ namespace Lab15._3DesigningAndCreatingARestAPI.Controllers
             List<Product> products = Connection().Query<Product>($"select * from Products where ProductName like '%{productName}%'").ToList<Product>();
             return products;
         }
+
+        [HttpPost("addproduct")]
+        public Product AddProduct(string productName, int supplierID, int categoryID, string quantityPerUnit, Decimal unitPrice, int unitsInStock, int unitsOnOrder, int reorderLevel, int discontinued)
+        {
+            Product prod = new Product() { ProductName = productName, SupplierID = supplierID, CategoryID = categoryID, QuantityPerUnit = quantityPerUnit, UnitPrice = unitPrice, UnitsInStock = unitsInStock, UnitsOnOrder = unitsOnOrder, ReorderLevel = reorderLevel, Discontinued = discontinued };
+            Connection().Insert<Product>(prod);
+            return prod;
+        }
     }
 }

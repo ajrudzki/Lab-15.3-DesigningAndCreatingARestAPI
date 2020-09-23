@@ -21,7 +21,7 @@ namespace Lab15._3DesigningAndCreatingARestAPI.Controllers
         public Decimal UnitPrice { get; set; }
         public int UnitsInStock { get; set; }
         public int UnitsOnOrder { get; set; }
-        public int RecordLevel { get; set; }
+        public int ReorderLevel { get; set; }
         public int Discontinued { get; set; }
     }
 }
