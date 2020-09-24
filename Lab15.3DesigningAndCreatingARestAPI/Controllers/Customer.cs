@@ -13,7 +13,7 @@ namespace Lab15._3DesigningAndCreatingARestAPI.Controllers
 {
     public class Customer
     {
-        [Key]
+        [ExplicitKey]
         public string CustomerID { get; set; }
 
         public string CompanyName { get; set; }
