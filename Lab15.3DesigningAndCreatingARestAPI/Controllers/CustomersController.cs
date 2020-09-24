@@ -35,5 +35,13 @@ namespace Lab15._3DesigningAndCreatingARestAPI.Controllers
 
             return customers;
         }
+
+        [HttpPost("addcustomer")]
+        [Consumes("application/json")]
+        public string AddCustomer([FromBody] Customer newCust)
+        {
+            string CustomerID = Customer.Create(Connection(), newCust);
+            return CustomerID;
+        }
     }
 }

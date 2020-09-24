@@ -27,13 +27,17 @@ namespace Lab15._3DesigningAndCreatingARestAPI.Controllers
         public string ShipRegion { get; set; }
         public string ShipPostalCode { get; set; }
         public string ShipCountry { get; set; }
-                
-        /*
-        public static void Delete(int id)
+
+
+        public static string DeleteOrder(int orderid)
         {
             IDbConnection db = new SqlConnection("Server=HN78Q13\\SQLEXPRESS;Database=Northwind;user id=testuser;password=abc123");
 
-            db.Delete(new Order { OrderID = id});
-        }*/
+            List<Order> orders = db.Query<Order>($"DELETE FROM Orders WHERE OrderID = '{orderid}'").AsList();
+
+            db.Delete(orders);
+
+            return "Record has been Deleted";
+        }
     }
 }

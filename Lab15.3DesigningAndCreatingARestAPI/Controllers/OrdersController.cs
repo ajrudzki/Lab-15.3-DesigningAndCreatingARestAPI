@@ -35,12 +35,13 @@ namespace Lab15._3DesigningAndCreatingARestAPI.Controllers
             return orderInfo;
         }
         //not getting errors but not deleting things
-        [HttpDelete("delete{OrderID}")]
-        public static void Delete(int orderid)
+        [HttpDelete("delete/{OrderID}")]
+        public void Delete(int orderid)
         {
-            IDbConnection db = new SqlConnection("Server=HN78Q13\\SQLEXPRESS;Database=Northwind;user id=testuser;password=abc123");
+            //IDbConnection db = new SqlConnection("Server=HN78Q13\\SQLEXPRESS;Database=Northwind;user id=testuser;password=abc123");
 
-            db.Delete(new Order() { OrderID = orderid });
+            Order_Details.DeleteOrder(orderid);
+            Order.DeleteOrder(orderid);
         }
     }
 }

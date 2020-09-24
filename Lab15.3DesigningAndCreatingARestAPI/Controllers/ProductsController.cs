@@ -36,11 +36,18 @@ namespace Lab15._3DesigningAndCreatingARestAPI.Controllers
         }
 
         [HttpPost("addproduct")]
-        public Product AddProduct(string productName, int supplierID, int categoryID, string quantityPerUnit, Decimal unitPrice, int unitsInStock, int unitsOnOrder, int reorderLevel, int discontinued)
+        [Consumes("application/json")]
+        public long AddProduct([FromBody] Product newProd)
+        {
+            long productID = Product.Create(Connection(), newProd);
+            return productID;
+        }
+        
+        /* public Product AddProduct(string productName, int supplierID, int categoryID, string quantityPerUnit, Decimal unitPrice, int unitsInStock, int unitsOnOrder, int reorderLevel, int discontinued)
         {
             Product prod = new Product() { ProductName = productName, SupplierID = supplierID, CategoryID = categoryID, QuantityPerUnit = quantityPerUnit, UnitPrice = unitPrice, UnitsInStock = unitsInStock, UnitsOnOrder = unitsOnOrder, ReorderLevel = reorderLevel, Discontinued = discontinued };
             Connection().Insert<Product>(prod);
             return prod;
-        }
+        } */
     }
 }
